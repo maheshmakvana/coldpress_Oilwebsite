@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { ExtractionProcess } from './components/ExtractionProcess';
 import { Products } from './components/Products';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
@@ -14,6 +15,7 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <ExtractionProcess />
         <Products />
         <About />
         <Contact />
