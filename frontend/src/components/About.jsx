@@ -86,17 +86,15 @@ export const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <div>
-              <span className="text-[#61525a] font-semibold text-sm uppercase tracking-wider inline-block animate-fade-in">About Us</span>
-              <h2 className="text-5xl md:text-6xl font-bold text-[#1e1919] mt-4 mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-                Our Story of <span className="bg-gradient-to-r from-[#61525a] to-[#4a3f45] bg-clip-text text-transparent">Excellence</span>
+              <span className="text-[#8B6F47] font-semibold text-sm uppercase tracking-wider inline-block animate-fade-in">About Our Heritage</span>
+              <h2 className="text-5xl md:text-6xl font-bold text-[#3d2817] mt-4 mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                Traditional <span className="bg-gradient-to-r from-[#8B6F47] to-[#D4A574] bg-clip-text text-transparent">Oil Extraction</span>
               </h2>
-              <p className="text-lg text-[#736c64] leading-relaxed mb-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                For over three generations, Golden Harvest Oils has been committed to bringing you the purest, 
-                most flavorful oils from around the world. Our passion for quality drives everything we do.
+              <p className="text-lg text-[#6b5744] leading-relaxed mb-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                For over three generations, our family has been dedicated to extracting the purest peanut and sesame oils using traditional cold-press methods that preserve every nutrient and natural flavor.
               </p>
-              <p className="text-lg text-[#736c64] leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                We work directly with farmers and producers who share our values of sustainability, 
-                authenticity, and excellence. Every bottle tells a story of craftsmanship and care.
+              <p className="text-lg text-[#6b5744] leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                We source our peanuts and sesame seeds from organic farms, ensuring that every bottle tells a story of authenticity, care, and time-honored craftsmanship.
               </p>
             </div>
 
