@@ -135,6 +135,67 @@ code {
   }
 }
 
+/* Peanut and sesame floating animation */
+@keyframes peanut-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, -30px) rotate(90deg);
+  }
+  50% {
+    transform: translate(-5px, -60px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-15px, -30px) rotate(270deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+@keyframes sesame-float {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(15px, -40px) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0, -80px) scale(0.8);
+    opacity: 0.2;
+  }
+}
+
+@keyframes oil-drop {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(50vh) scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.peanut-float {
+  animation: peanut-float 15s ease-in-out infinite;
+}
+
+.sesame-float {
+  animation: sesame-float 10s ease-in-out infinite;
+}
+
+.oil-drop {
+  animation: oil-drop 8s ease-in-out infinite;
+}
+
 @keyframes float-delayed {
   0%, 100% {
     transform: translateY(0) rotate(0deg);
