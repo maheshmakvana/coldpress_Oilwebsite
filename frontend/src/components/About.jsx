@@ -104,14 +104,14 @@ export const About = () => {
                 return (
                   <div
                     key={index}
-                    className="group flex items-center space-x-3 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-rotate-1 border border-[#61525a]/10 animate-fade-in-up"
+                    className="group flex items-center space-x-3 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-rotate-1 border-2 border-[#8B6F47]/20 animate-fade-in-up"
                     style={{ animationDelay: `${0.4 + index * 0.1}s` }}
                   >
                     <div className="relative">
-                      <Icon className="w-7 h-7 text-[#61525a] flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500" />
-                      <div className="absolute inset-0 bg-[#61525a]/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <Icon className="w-7 h-7 text-[#8B6F47] flex-shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500" />
+                      <div className="absolute inset-0 bg-[#8B6F47]/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-                    <span className="text-sm font-medium text-[#1e1919] group-hover:text-[#61525a] transition-colors duration-300">{feature.text}</span>
+                    <span className="text-sm font-medium text-[#3d2817] group-hover:text-[#8B6F47] transition-colors duration-300">{feature.text}</span>
                   </div>
                 );
               })}
@@ -120,30 +120,30 @@ export const About = () => {
             <div className="grid grid-cols-3 gap-6 pt-8">
               <div className="text-center group animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
                 <div className="relative inline-block">
-                  <div className="text-5xl font-bold text-[#61525a] mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-5xl font-bold text-[#8B6F47] mb-2 group-hover:scale-110 transition-transform duration-300">
                     {counters.years}+
                   </div>
-                  <TrendingUp className="w-5 h-5 text-[#61525a] absolute -top-2 -right-6 animate-bounce-slow" />
+                  <TrendingUp className="w-5 h-5 text-[#8B6F47] absolute -top-2 -right-6 animate-bounce-slow" />
                 </div>
-                <div className="text-sm text-[#736c64] font-medium">Years Experience</div>
+                <div className="text-sm text-[#6b5744] font-medium">Years Tradition</div>
               </div>
               <div className="text-center group animate-fade-in-up" style={{ animationDelay: '0.9s' }}>
                 <div className="relative inline-block">
-                  <div className="text-5xl font-bold text-[#61525a] mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-5xl font-bold text-[#8B6F47] mb-2 group-hover:scale-110 transition-transform duration-300">
                     {counters.natural}%
                   </div>
-                  <CheckCircle2 className="w-5 h-5 text-[#61525a] absolute -top-2 -right-6 animate-bounce-slow" />
+                  <CheckCircle2 className="w-5 h-5 text-[#8B6F47] absolute -top-2 -right-6 animate-bounce-slow" />
                 </div>
-                <div className="text-sm text-[#736c64] font-medium">Natural Products</div>
+                <div className="text-sm text-[#6b5744] font-medium">Organic</div>
               </div>
               <div className="text-center group animate-fade-in-up" style={{ animationDelay: '1s' }}>
                 <div className="relative inline-block">
-                  <div className="text-5xl font-bold text-[#61525a] mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-5xl font-bold text-[#8B6F47] mb-2 group-hover:scale-110 transition-transform duration-300">
                     {counters.customers}k+
                   </div>
-                  <Heart className="w-5 h-5 text-[#61525a] absolute -top-2 -right-6 animate-bounce-slow" />
+                  <Sprout className="w-5 h-5 text-[#8B6F47] absolute -top-2 -right-6 animate-bounce-slow" />
                 </div>
-                <div className="text-sm text-[#736c64] font-medium">Happy Customers</div>
+                <div className="text-sm text-[#6b5744] font-medium">Satisfied Families</div>
               </div>
             </div>
           </div>
