@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { CheckCircle2, Heart, Globe, Users, TrendingUp } from 'lucide-react';
+import { CheckCircle2, Sprout, Mountain, Users, TrendingUp } from 'lucide-react';
 import { mockGalleryImages } from '../mock';
 
 export const About = () => {
@@ -8,10 +8,10 @@ export const About = () => {
   const sectionRef = useRef(null);
 
   const features = [
-    { icon: Heart, text: 'Sustainably Sourced' },
-    { icon: Globe, text: 'Global Quality Standards' },
-    { icon: Users, text: 'Family-Owned Business' },
-    { icon: CheckCircle2, text: 'Quality Guaranteed' },
+    { icon: Sprout, text: 'Organically Grown' },
+    { icon: Mountain, text: 'Traditional Methods' },
+    { icon: Users, text: 'Family Tradition' },
+    { icon: CheckCircle2, text: 'Chemical-Free' },
   ];
 
   useEffect(() => {
