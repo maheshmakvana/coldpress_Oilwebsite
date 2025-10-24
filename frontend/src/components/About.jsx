@@ -164,7 +164,7 @@ export const About = () => {
                   alt={`Gallery ${index + 1}`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#61525a]/40 via-transparent to-transparent group-hover:from-[#61525a]/60 transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#8B6F47]/40 via-transparent to-transparent group-hover:from-[#8B6F47]/60 transition-all duration-500"></div>
                 
                 {/* Shine effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
