@@ -1,30 +1,33 @@
 export const mockProducts = [
   {
     id: '1',
-    name: 'Premium Extra Virgin Olive Oil',
-    description: 'Cold-pressed from hand-picked Mediterranean olives, our extra virgin olive oil delivers a rich, fruity flavor perfect for salads and cooking.',
-    price: 24.99,
-    volume: '500ml',
+    name: 'Cold-Pressed Peanut Oil',
+    description: 'Pure groundnut oil extracted through traditional cold-press methods. Rich in monounsaturated fats with a delightful nutty aroma, perfect for deep frying and stir-frying.',
+    price: 22.99,
+    volume: '1 Liter',
     image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwxfHxvbGl2ZSUyMG9pbCUyMGJvdHRsZXxlbnwwfHx8fDE3NjEzMjA0MDl8MA&ixlib=rb-4.1.0&q=85',
-    category: 'Olive Oil'
+    category: 'Peanut Oil',
+    source: 'Hand-picked groundnuts'
   },
   {
     id: '2',
-    name: 'Cold-Pressed Sunflower Oil',
-    description: 'Pure and natural sunflower oil with high vitamin E content. Light taste, perfect for all your cooking needs from frying to baking.',
-    price: 18.99,
+    name: 'Organic Sesame Oil',
+    description: 'Premium til oil from carefully selected organic sesame seeds. Cold-pressed to retain natural antioxidants and authentic flavor, ideal for cooking and seasoning.',
+    price: 26.99,
     volume: '750ml',
     image: 'https://images.unsplash.com/photo-1552592074-ea7a91b851b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwyfHxvbGl2ZSUyMG9pbCUyMGJvdHRsZXxlbnwwfHx8fDE3NjEzMjA0MDl8MA&ixlib=rb-4.1.0&q=85',
-    category: 'Sunflower Oil'
+    category: 'Sesame Oil',
+    source: 'Organic til seeds'
   },
   {
     id: '3',
-    name: 'Organic Coconut Oil',
-    description: 'Virgin coconut oil extracted from fresh coconuts. Rich in natural antioxidants, ideal for cooking, baking, and beauty care.',
-    price: 22.99,
-    volume: '500ml',
+    name: 'Blended Groundnut-Sesame Oil',
+    description: 'Artisan blend of peanut and sesame oils, combining the best of both worlds. Perfect balance of flavor and nutrition for authentic traditional cooking.',
+    price: 24.99,
+    volume: '1 Liter',
     image: 'https://images.unsplash.com/photo-1637006599065-81cebb5a52ef?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwzfHxvbGl2ZSUyMG9pbCUyMGJvdHRsZXxlbnwwfHx8fDE3NjEzMjA0MDl8MA&ixlib=rb-4.1.0&q=85',
-    category: 'Coconut Oil'
+    category: 'Blended Oil',
+    source: 'Premium blend'
   }
 ];
 
@@ -36,8 +39,41 @@ export const mockGalleryImages = [
 
 export const mockBrandInfo = {
   name: 'Golden Harvest Oils',
-  tagline: 'Pure Excellence in Every Drop',
-  description: 'We source the finest oils from around the world, bringing you premium quality products that enhance your culinary creations and healthy lifestyle.',
+  tagline: 'Traditional Cold-Press Excellence',
+  description: 'Bringing you the finest cold-pressed peanut and sesame oils using traditional extraction methods that preserve natural nutrients and authentic flavors.',
   email: 'info@goldenharvestoils.com',
   phone: '+1 (555) 123-4567'
 };
+
+export const extractionSteps = [
+  {
+    step: 1,
+    title: 'Selection',
+    description: 'Hand-picking premium peanuts and sesame seeds',
+    icon: 'select'
+  },
+  {
+    step: 2,
+    title: 'Cleaning',
+    description: 'Natural cleaning without chemicals',
+    icon: 'clean'
+  },
+  {
+    step: 3,
+    title: 'Cold-Pressing',
+    description: 'Traditional stone-mill extraction',
+    icon: 'press'
+  },
+  {
+    step: 4,
+    title: 'Filtering',
+    description: 'Natural filtration for purity',
+    icon: 'filter'
+  },
+  {
+    step: 5,
+    title: 'Bottling',
+    description: 'Fresh bottling in glass containers',
+    icon: 'bottle'
+  }
+];
