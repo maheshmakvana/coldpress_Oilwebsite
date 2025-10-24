@@ -59,12 +59,27 @@ export const About = () => {
   };
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 bg-[#f7f5f2] relative overflow-hidden">
-      {/* Animated background */}
+    <section id="about" ref={sectionRef} className="py-24 bg-gradient-to-br from-[#f5e6d3] to-[#faf5ef] relative overflow-hidden">
+      {/* Animated background with peanuts */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#61525a] rounded-full blur-3xl opacity-5 animate-float"></div>
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#61525a] rounded-full blur-3xl opacity-5 animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-[#61525a] rounded-full blur-2xl opacity-5 animate-pulse-slow"></div>
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute peanut-float opacity-10"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${i * 0.8}s`
+            }}
+          >
+            <svg width="35" height="35" viewBox="0 0 40 40" fill="#8B6F47">
+              <ellipse cx="20" cy="15" rx="8" ry="12" transform="rotate(25 20 15)" />
+              <ellipse cx="20" cy="25" rx="8" ry="12" transform="rotate(-25 20 25)" />
+            </svg>
+          </div>
+        ))}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#8B6F47] rounded-full blur-3xl opacity-5 animate-float"></div>
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#D4A574] rounded-full blur-3xl opacity-5 animate-float-delayed"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
