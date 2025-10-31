@@ -9,197 +9,105 @@ import { mockBrandInfo } from '../mock';
 
 export const Contact = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
-  const [focusedField, setFocusedField] = useState(null);
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     toast({
-      title: "Message Sent!",
+      title: 'Message Sent!',
       description: "We'll get back to you within 24 hours.",
     });
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
 
   const contactCards = [
-    { icon: Mail, title: 'Email Us', info: mockBrandInfo.email, delay: '0s' },
-    { icon: Phone, title: 'Call Us', info: mockBrandInfo.phone, delay: '0.2s' },
-    { icon: MapPin, title: 'Visit Us', info: '123 Harvest Lane\nOakland, CA 94612', delay: '0.4s' },
+    { icon: Mail, title: 'Email Us', info: mockBrandInfo.email },
+    { icon: Phone, title: 'Call Us', info: mockBrandInfo.phone },
+    { icon: MapPin, title: 'Visit Us', info: '123 Harvest Lane\nOakland, CA 94612' },
   ];
 
   return (
-    <section id="contact" className="py-24 bg-white relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 right-20 w-96 h-96 bg-[#61525a] rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-[#61525a] rounded-full blur-3xl animate-pulse-slower"></div>
-      </div>
+    <section id="contact" className="relative bg-[var(--theme-surface)] py-24">
+      <div className="absolute inset-x-0 top-0 h-32 bg-[var(--theme-divider)]" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-[var(--theme-divider)]" />
+      <div className="absolute inset-0 opacity-[0.05]" style={{ background: 'var(--theme-ripple)' }} />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-[#f7f5f2] px-6 py-3 rounded-full mb-4 shadow-lg animate-fade-in">
-            <Sparkles className="w-5 h-5 text-[#61525a] animate-spin-slow" />
-            <span className="text-[#61525a] font-semibold text-sm uppercase tracking-wider">Get In Touch</span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-[#1e1919] mt-4 mb-4 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            Contact Us
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="flex flex-col items-center gap-6 text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--theme-border-soft)] bg-[var(--theme-surface-alt)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-[var(--theme-text-muted)] shadow">
+            Get in Touch
+            <Sparkles className="h-4 w-4 text-[var(--theme-highlight)]" />
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-[var(--theme-text-strong)]">
+            Let's Press Something Beautiful Together
           </h2>
-          <p className="text-lg text-[#736c64] max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Have questions about our products? We'd love to hear from you.
+          <p className="max-w-2xl text-lg text-[var(--theme-text)]">
+            Share your culinary dreams, wholesale needs, or wellness plans and we’ll tailor an oil ritual for you.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          {contactCards.map((card, index) => {
-            const Icon = card.icon;
-            return (
-              <Card 
-                key={index}
-                className="group hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-rotate-1 border-2 hover:border-[#61525a] bg-white animate-fade-in-up"
-                style={{ animationDelay: card.delay }}
-              >
-                <CardContent className="pt-10 pb-8 text-center relative overflow-hidden">
-                  {/* Background decoration */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#f7f5f2] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  <div className="relative">
-                    <div className="w-20 h-20 bg-[#f7f5f2] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#61525a] transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-12 shadow-lg group-hover:shadow-2xl">
-                      <Icon className="w-10 h-10 text-[#61525a] group-hover:text-white transition-all duration-500 group-hover:scale-110" />
+        <div className="mt-16 grid gap-8 lg:grid-cols-[minmax(0,1fr),minmax(0,1.2fr)]">
+          <div className="space-y-6">
+            {contactCards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <Card key={card.title} className="relative overflow-hidden border border-[var(--theme-border-soft)] bg-[var(--theme-background)] shadow-xl shadow-[var(--theme-card-shadow)]">
+                  <CardContent className="flex items-start gap-4 p-6">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--theme-primary-soft)] text-[var(--theme-primary)]">
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--theme-text-muted)]">{card.title}</p>
+                      <p className="mt-2 text-lg font-semibold text-[var(--theme-text-strong)] whitespace-pre-line">{card.info}</p>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#1e1919] mb-3 group-hover:text-[#61525a] transition-colors duration-300">{card.title}</h3>
-                    <p className="text-[#736c64] leading-relaxed whitespace-pre-line">{card.info}</p>
-                  </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
 
-                  {/* Corner sparkle */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <Sparkles className="w-5 h-5 text-[#61525a] animate-spin-slow" />
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-
-        <Card className="max-w-3xl mx-auto shadow-2xl border-2 hover:border-[#61525a] transition-all duration-500 relative overflow-hidden animate-fade-in-scale" style={{ animationDelay: '0.6s' }}>
-          {/* Shine effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-          
-          <CardContent className="p-10">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="relative">
-                  <label htmlFor="name" className="block text-sm font-semibold text-[#1e1919] mb-2">
-                    Your Name
-                  </label>
-                  <div className="relative">
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      onFocus={() => setFocusedField('name')}
-                      onBlur={() => setFocusedField(null)}
-                      required
-                      placeholder="John Doe"
-                      className={`border-2 transition-all duration-300 ${
-                        focusedField === 'name' ? 'border-[#61525a] shadow-lg scale-105' : 'border-gray-200'
-                      }`}
-                    />
-                  </div>
+          <Card className="relative overflow-hidden border border-[var(--theme-border-strong)] bg-[var(--theme-background)] shadow-2xl shadow-[var(--theme-card-shadow)]">
+            <CardContent className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid gap-6 md:grid-cols-2">
+                  <Field label="Your Name" id="name">
+                    <Input id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="John Doe" />
+                  </Field>
+                  <Field label="Email Address" id="email">
+                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="john@example.com" />
+                  </Field>
                 </div>
-                <div className="relative">
-                  <label htmlFor="email" className="block text-sm font-semibold text-[#1e1919] mb-2">
-                    Email Address
-                  </label>
-                  <div className="relative">
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      onFocus={() => setFocusedField('email')}
-                      onBlur={() => setFocusedField(null)}
-                      required
-                      placeholder="john@example.com"
-                      className={`border-2 transition-all duration-300 ${
-                        focusedField === 'email' ? 'border-[#61525a] shadow-lg scale-105' : 'border-gray-200'
-                      }`}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative">
-                <label htmlFor="phone" className="block text-sm font-semibold text-[#1e1919] mb-2">
-                  Phone Number
-                </label>
-                <div className="relative">
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    onFocus={() => setFocusedField('phone')}
-                    onBlur={() => setFocusedField(null)}
-                    placeholder="+1 (555) 123-4567"
-                    className={`border-2 transition-all duration-300 ${
-                      focusedField === 'phone' ? 'border-[#61525a] shadow-lg scale-105' : 'border-gray-200'
-                    }`}
-                  />
-                </div>
-              </div>
-
-              <div className="relative">
-                <label htmlFor="message" className="block text-sm font-semibold text-[#1e1919] mb-2">
-                  Your Message
-                </label>
-                <div className="relative">
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    onFocus={() => setFocusedField('message')}
-                    onBlur={() => setFocusedField(null)}
-                    required
-                    rows={5}
-                    placeholder="Tell us about your inquiry..."
-                    className={`border-2 transition-all duration-300 resize-none ${
-                      focusedField === 'message' ? 'border-[#61525a] shadow-lg scale-105' : 'border-gray-200'
-                    }`}
-                  />
-                </div>
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="group w-full bg-[#61525a] hover:bg-[#4a3f45] text-white transition-all duration-500 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center justify-center">
-                  <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                <Field label="Phone Number" id="phone">
+                  <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="+1 (555) 123-4567" />
+                </Field>
+                <Field label="Your Message" id="message">
+                  <Textarea id="message" name="message" rows={5} value={formData.message} onChange={handleChange} required placeholder="Tell us about your inquiry..." />
+                </Field>
+                <Button type="submit" className="group flex w-full items-center justify-center gap-2 bg-[var(--theme-primary)] py-4 text-white shadow-lg shadow-[var(--theme-card-shadow)] transition-transform duration-300 hover:scale-[1.02] hover:bg-[var(--theme-primary-strong)]">
                   Send Message
-                </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-[#4a3f45] to-[#61525a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+                  <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   );
 };
+
+const Field = ({ label, id, children }) => (
+  <label htmlFor={id} className="block text-sm font-semibold text-[var(--theme-text-strong)]">
+    {label}
+    <div className="mt-2 rounded-2xl border border-[var(--theme-border-soft)] bg-[var(--theme-surface)] px-4 py-2 shadow-inner focus-within:border-[var(--theme-primary)] focus-within:shadow-[0_0_0_3px_var(--theme-primary-soft)]">
+      {children}
+    </div>
+  </label>
+);

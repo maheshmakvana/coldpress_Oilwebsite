@@ -2,14 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ShoppingBag, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
 
+const NAV_LINKS = ['hero', 'process', 'journey', 'products', 'gallery', 'wellness', 'recipes', 'testimonials', 'contact'];
+
+const NAV_LABELS = {
+  hero: 'Home',
+  process: 'Process',
+  journey: 'Journey',
+  products: 'Products',
+  gallery: 'Gallery',
+  wellness: 'Wellness',
+  recipes: 'Recipes',
+  testimonials: 'Voices',
+  contact: 'Contact',
+};
+
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+      setScrollProgress(progress);
+      setScrolled(scrollTop > 40);
     };
+
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -24,87 +47,90 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-        scrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-2xl border-b border-[#61525a]/10' 
-          : 'bg-transparent'
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
+        scrolled ? 'border-b border-[var(--theme-border-soft)] bg-[var(--theme-glass-strong)] backdrop-blur-xl shadow-lg shadow-[var(--theme-card-shadow)]' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div 
-            className="flex items-center space-x-2 cursor-pointer group" 
-            onClick={() => scrollToSection('hero')}
-          >
-            <div className="relative w-12 h-12 bg-gradient-to-br from-[#61525a] to-[#4a3f45] rounded-xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl group-hover:shadow-[#61525a]/30">
-              <span className="text-white font-bold text-2xl relative z-10">G</span>
-              <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <Sparkles className="absolute -top-1 -right-1 w-4 h-4 text-[#61525a] opacity-0 group-hover:opacity-100 group-hover:animate-spin-slow transition-opacity duration-500" />
-            </div>
-            <div>
-              <span className="text-xl font-bold text-[#1e1919] group-hover:text-[#61525a] transition-colors duration-300">Golden Harvest</span>
-              <div className="h-0.5 bg-gradient-to-r from-[#61525a] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-            </div>
-          </div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1 overflow-hidden">
+        <div className="h-full w-full bg-[var(--theme-primary-soft)]">
+          <div
+            className="h-full bg-[var(--theme-gradient-strong)] animate-shimmer origin-left"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+      </div>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <button
+          className="group flex items-center gap-3"
+          onClick={() => scrollToSection('hero')}
+        >
+          <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--theme-primary)] text-lg font-bold text-white shadow-lg shadow-[var(--theme-card-shadow)] transition-all duration-500 group-hover:-translate-y-0.5 group-hover:scale-110">
+            <span className="pointer-events-none absolute inset-[-6px] rounded-[22px] border border-white/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            GH
+            <Sparkles className="absolute -right-1 -top-1 h-4 w-4 text-[var(--theme-highlight)] opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:animate-spin-slow" />
+          </span>
+          <span className="flex flex-col items-start">
+            <span className="text-lg font-semibold uppercase tracking-[0.2em] text-[var(--theme-text-muted)]">Golden Harvest</span>
+            <span className="text-sm font-semibold text-[var(--theme-text-strong)]">Cold Press Atelier</span>
+          </span>
+        </button>
 
-          <nav className="hidden md:flex items-center space-x-8">
-            {['products', 'about', 'contact'].map((section, index) => (
-              <button 
+        <nav className="hidden items-center gap-6 lg:flex">
+          {NAV_LINKS.map((section) => (
+            <button
+              key={section}
+              onClick={() => scrollToSection(section)}
+              className="group relative text-sm font-semibold uppercase tracking-[0.3em] text-[var(--theme-text-muted)] transition-all duration-300 hover:text-[var(--theme-primary)]"
+            >
+              {NAV_LABELS[section] ?? section}
+              <span className="absolute -bottom-2 left-0 h-0.5 w-full scale-x-0 transform bg-[var(--theme-primary)] transition-transform duration-300 group-hover:scale-x-100" />
+            </button>
+          ))}
+          <Button
+            onClick={() => scrollToSection('contact')}
+            className="relative overflow-hidden bg-[var(--theme-primary)] px-6 py-2 text-white shadow-lg shadow-[var(--theme-card-shadow)] transition-transform duration-300 hover:scale-105 hover:bg-[var(--theme-primary-strong)]"
+          >
+            <span className="relative z-10 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.3em]">
+              <ShoppingBag className="h-4 w-4" /> Enquire
+            </span>
+            <span className="pointer-events-none absolute inset-0 bg-[var(--theme-gradient-soft)] opacity-0 transition-opacity duration-300 hover:opacity-100" />
+          </Button>
+        </nav>
+
+        <button
+          className="lg:hidden text-[var(--theme-text-strong)]"
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          aria-label="Toggle navigation"
+        >
+          {mobileMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+        </button>
+      </div>
+
+      {mobileMenuOpen && (
+        <nav className="lg:hidden">
+          <div className="mx-6 mb-6 space-y-2 rounded-3xl border border-[var(--theme-border-soft)] bg-[var(--theme-glass-strong)] p-6 shadow-xl shadow-[var(--theme-card-shadow)] backdrop-blur-xl">
+            {NAV_LINKS.map((section, index) => (
+              <button
                 key={section}
-                onClick={() => scrollToSection(section)} 
-                className="relative text-[#736c64] hover:text-[#61525a] transition-colors duration-300 font-medium capitalize group"
+                onClick={() => scrollToSection(section)}
+                className="flex w-full items-center justify-between rounded-2xl bg-[var(--theme-surface)] px-4 py-3 text-left text-sm font-semibold uppercase tracking-[0.35em] text-[var(--theme-text-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--theme-background)] hover:text-[var(--theme-primary)]"
+                style={{ transitionDelay: `${index * 40}ms` }}
               >
-                {section}
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#61525a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                {NAV_LABELS[section] ?? section}
+                <span className="h-2 w-2 rounded-full bg-[var(--theme-primary)]" />
               </button>
             ))}
-            <Button 
-              onClick={() => scrollToSection('contact')} 
-              className="group bg-[#61525a] hover:bg-[#4a3f45] text-white transition-all duration-500 transform hover:scale-110 hover:shadow-xl hover:shadow-[#61525a]/30 relative overflow-hidden"
+            <Button
+              onClick={() => scrollToSection('contact')}
+              className="w-full bg-[var(--theme-primary)] py-3 text-white shadow-lg shadow-[var(--theme-card-shadow)] hover:bg-[var(--theme-primary-strong)]"
             >
-              <span className="relative z-10 flex items-center">
-                <ShoppingBag className="w-4 h-4 mr-2 group-hover:animate-bounce" />
-                Inquire Now
+              <span className="flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.35em]">
+                <ShoppingBag className="h-4 w-4" /> Enquire
               </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-[#4a3f45] to-[#61525a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
             </Button>
-          </nav>
-
-          <button
-            className="md:hidden text-[#1e1919] hover:text-[#61525a] transition-all duration-300 transform hover:scale-110"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? 
-              <X className="w-6 h-6 animate-spin-slow" /> : 
-              <Menu className="w-6 h-6" />
-            }
-          </button>
-        </div>
-
-        {mobileMenuOpen && (
-          <nav className="md:hidden mt-6 pb-6 animate-slide-down">
-            <div className="flex flex-col space-y-4 bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-[#61525a]/10">
-              {['products', 'about', 'contact'].map((section, index) => (
-                <button 
-                  key={section}
-                  onClick={() => scrollToSection(section)} 
-                  className="text-[#736c64] hover:text-[#61525a] transition-all duration-300 text-left font-medium capitalize py-2 px-4 rounded-lg hover:bg-[#f7f5f2] transform hover:translate-x-2"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {section}
-                </button>
-              ))}
-              <Button 
-                onClick={() => scrollToSection('contact')} 
-                className="bg-[#61525a] hover:bg-[#4a3f45] text-white w-full transform hover:scale-105 transition-all duration-300 shadow-lg"
-              >
-                <ShoppingBag className="w-4 h-4 mr-2" />
-                Inquire Now
-              </Button>
-            </div>
-          </nav>
-        )}
-      </div>
+          </div>
+        </nav>
+      )}
     </header>
   );
 };
