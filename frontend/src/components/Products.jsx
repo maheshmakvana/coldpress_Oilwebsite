@@ -62,6 +62,12 @@ export const Products = () => {
         ))}
       </div>
 
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-32 left-10 w-64 h-64 bg-gradient-to-br from-[#8B6F47]/25 via-transparent to-transparent blur-3xl animate-float-up"></div>
+        <div className="absolute -bottom-36 right-0 w-72 h-72 bg-gradient-to-br from-[#D4A574]/25 via-transparent to-transparent blur-3xl animate-float-up" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-1/3 right-1/4 w-48 h-48 border border-[#8B6F47]/20 rounded-full animate-orbit" style={{ animationDuration: '18s' }}></div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <Badge className="bg-gradient-to-r from-[#8B6F47] to-[#D4A574] text-white mb-4 px-8 py-3 text-sm font-semibold animate-fade-in hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -90,6 +96,9 @@ export const Products = () => {
                   animationDelay: `${index * 0.2}s`
                 }}
               >
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-[-40%] bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-12 animate-shimmer" style={{ animationDuration: '3.5s' }}></div>
+                </div>
                 {/* Floating peanuts on hover */}
                 {hoveredProduct === product.id && (
                   <>
@@ -133,7 +142,7 @@ export const Products = () => {
                   />
                   
                   <div
-                    className={`absolute bottom-4 right-4 bg-white/95 backdrop-blur-md px-6 py-3 rounded-full shadow-xl transform transition-all duration-500 ${
+                    className={`absolute bottom-4 right-4 bg-white/95 backdrop-blur-md px-6 py-3 rounded-full shadow-xl transform transition-all duration-500 animate-float-up ${
                       hoveredProduct === product.id ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                     }`}
                   >
@@ -170,6 +179,7 @@ export const Products = () => {
                       <ShoppingCart className="w-4 h-4 mr-2 group-hover:animate-bounce" />
                       Order Now
                     </span>
+                    <span className="pointer-events-none absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer"></span>
                   </Button>
                 </CardFooter>
 

@@ -45,6 +45,12 @@ export const Contact = () => {
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 right-20 w-96 h-96 bg-[#61525a] rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-[#61525a] rounded-full blur-3xl animate-pulse-slower"></div>
+        <div className="absolute inset-y-0 left-1/2 w-px bg-gradient-to-b from-transparent via-[#61525a]/40 to-transparent animate-shimmer"></div>
+      </div>
+
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-1/3 left-16 w-48 h-48 border border-[#61525a]/20 rounded-full animate-orbit" style={{ animationDuration: '16s' }}></div>
+        <div className="absolute bottom-1/4 right-16 w-56 h-56 border border-[#61525a]/20 rounded-full animate-orbit" style={{ animationDuration: '20s', animationDelay: '0.8s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -65,17 +71,23 @@ export const Contact = () => {
           {contactCards.map((card, index) => {
             const Icon = card.icon;
             return (
-              <Card 
+              <Card
                 key={index}
-                className="group hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-rotate-1 border-2 hover:border-[#61525a] bg-white animate-fade-in-up"
+                className="group relative overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-rotate-1 border-2 hover:border-[#61525a] bg-white animate-fade-in-up"
                 style={{ animationDelay: card.delay }}
               >
                 <CardContent className="pt-10 pb-8 text-center relative overflow-hidden">
+                  <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-[-30%] bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" style={{ animationDuration: '3s' }}></div>
+                  </div>
                   {/* Background decoration */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#f7f5f2] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
+
                   <div className="relative">
-                    <div className="w-20 h-20 bg-[#f7f5f2] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#61525a] transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-12 shadow-lg group-hover:shadow-2xl">
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                      <div className="w-28 h-28 rounded-full border border-[#61525a]/20 animate-ripple" style={{ animationDelay: '0.4s' }}></div>
+                    </div>
+                    <div className="relative w-20 h-20 bg-[#f7f5f2] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#61525a] transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-12 shadow-lg group-hover:shadow-2xl">
                       <Icon className="w-10 h-10 text-[#61525a] group-hover:text-white transition-all duration-500 group-hover:scale-110" />
                     </div>
                     <h3 className="text-2xl font-bold text-[#1e1919] mb-3 group-hover:text-[#61525a] transition-colors duration-300">{card.title}</h3>
@@ -92,10 +104,11 @@ export const Contact = () => {
           })}
         </div>
 
-        <Card className="max-w-3xl mx-auto shadow-2xl border-2 hover:border-[#61525a] transition-all duration-500 relative overflow-hidden animate-fade-in-scale" style={{ animationDelay: '0.6s' }}>
+        <Card className="group max-w-3xl mx-auto shadow-2xl border-2 hover:border-[#61525a] transition-all duration-500 relative overflow-hidden animate-fade-in-scale" style={{ animationDelay: '0.6s' }}>
           {/* Shine effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-          
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 animate-shimmer" style={{ animationDuration: '4s' }}></div>
+          <div className="pointer-events-none absolute -inset-10 rounded-[32px] border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ripple"></div>
+
           <CardContent className="p-10">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -194,7 +207,8 @@ export const Contact = () => {
                   <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
                   Send Message
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-[#4a3f45] to-[#61525a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
+                <span className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#4a3f45] to-[#61525a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
+                <span className="pointer-events-none absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer"></span>
               </Button>
             </form>
           </CardContent>

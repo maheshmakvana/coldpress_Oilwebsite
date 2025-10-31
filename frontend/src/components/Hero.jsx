@@ -101,8 +101,13 @@ export const Hero = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
+        <div className="pointer-events-none absolute -inset-x-24 -inset-y-16">
+          <div className="absolute left-1/2 top-1/2 w-[560px] h-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/20 opacity-60 animate-ripple"></div>
+          <div className="absolute left-1/2 top-1/2 w-[420px] h-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[#8B6F47]/25 via-transparent to-[#D4A574]/30 blur-3xl animate-shimmer" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute left-1/2 top-1/2 w-[320px] h-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#8B6F47]/30 animate-orbit"></div>
+        </div>
         <div
-          className={`transform transition-all duration-1000 ${
+          className={`relative transform transition-all duration-1000 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
@@ -128,7 +133,11 @@ export const Hero = () => {
             {mockBrandInfo.description}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up" style={{ animationDelay: '1s' }}>
+          <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up" style={{ animationDelay: '1s' }}>
+            <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+              <div className="w-64 h-64 rounded-full bg-gradient-to-br from-[#8B6F47]/20 to-[#D4A574]/20 blur-3xl animate-float-up"></div>
+              <div className="absolute w-40 h-40 rounded-full border border-[#8B6F47]/30 animate-ripple" style={{ animationDelay: '0.8s' }}></div>
+            </div>
             <Button
               onClick={scrollToProducts}
               size="lg"
@@ -138,17 +147,19 @@ export const Hero = () => {
                 Explore Our Oils
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
               </span>
+              <span className="pointer-events-none absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer"></span>
             </Button>
             <Button
               onClick={() => document.getElementById('process').scrollIntoView({ behavior: 'smooth' })}
               size="lg"
               variant="outline"
-              className="group border-3 border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47] hover:text-white px-12 py-7 text-lg transform hover:scale-110 transition-all duration-500 hover:shadow-2xl font-bold"
+              className="group border-3 border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47] hover:text-white px-12 py-7 text-lg transform hover:scale-110 transition-all duration-500 hover:shadow-2xl font-bold relative overflow-hidden"
             >
               <span className="relative z-10 flex items-center">
                 <Sun className="w-5 h-5 mr-2 group-hover:rotate-180 transition-transform duration-700" />
                 Our Process
               </span>
+              <span className="pointer-events-none absolute inset-0 bg-[#8B6F47]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer"></span>
             </Button>
           </div>
 
