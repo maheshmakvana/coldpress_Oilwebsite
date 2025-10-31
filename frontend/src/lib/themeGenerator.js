@@ -1,78 +1,61 @@
-const THEME_COUNT = 33;
-
-const adjectives = [
-  'Aurora',
-  'Golden',
-  'Velvet',
-  'Verdant',
-  'Amber',
-  'Radiant',
-  'Luminous',
-  'Serene',
-  'Celestial',
-  'Harvest',
-  'Ethereal',
-  'Rustic',
-  'Majestic',
-  'Sunlit',
-  'Savory',
-  'Gilded',
-  'Blooming',
-  'Soothing',
-  'Prismatic',
-  'Amberwood',
-  'Willow',
-  'Vellichor',
-  'Infinite',
-  'Mellow',
-  'Halcyon',
-  'Sequoia',
-  'Auric',
-  'Dawn',
-  'Ember',
-  'Orchard',
-  'Cascade',
-  'Laguna',
-  'Tidal',
-  'Solar',
+const curatedThemes = [
+  {
+    id: 'golden-sesame-press',
+    name: 'Golden Sesame Press',
+    hues: { base: 42, accent: 28, tertiary: 18 },
+    variance: { base: 8, accent: 18, tertiary: 16 },
+  },
+  {
+    id: 'sunlit-olive-grove',
+    name: 'Sunlit Olive Grove',
+    hues: { base: 86, accent: 52, tertiary: 32 },
+    variance: { base: 6, accent: 16, tertiary: 20 },
+  },
+  {
+    id: 'verdant-basil-fusion',
+    name: 'Verdant Basil Fusion',
+    hues: { base: 128, accent: 92, tertiary: 46 },
+    variance: { base: 10, accent: 18, tertiary: 22 },
+  },
+  {
+    id: 'ruby-pomegranate-drizzle',
+    name: 'Ruby Pomegranate Drizzle',
+    hues: { base: 348, accent: 12, tertiary: 312 },
+    variance: { base: 12, accent: 16, tertiary: 18 },
+  },
+  {
+    id: 'citrus-press-sunrise',
+    name: 'Citrus Press Sunrise',
+    hues: { base: 24, accent: 48, tertiary: 356 },
+    variance: { base: 10, accent: 18, tertiary: 14 },
+  },
+  {
+    id: 'almond-blossom-silk',
+    name: 'Almond Blossom Silk',
+    hues: { base: 18, accent: 336, tertiary: 32 },
+    variance: { base: 12, accent: 16, tertiary: 18 },
+  },
+  {
+    id: 'midnight-walnut-reserve',
+    name: 'Midnight Walnut Reserve',
+    hues: { base: 208, accent: 220, tertiary: 178 },
+    variance: { base: 8, accent: 16, tertiary: 14 },
+  },
+  {
+    id: 'avocado-orchard-mist',
+    name: 'Avocado Orchard Mist',
+    hues: { base: 96, accent: 132, tertiary: 68 },
+    variance: { base: 10, accent: 18, tertiary: 18 },
+  },
+  {
+    id: 'peppery-arugula-burst',
+    name: 'Peppery Arugula Burst',
+    hues: { base: 68, accent: 18, tertiary: 192 },
+    variance: { base: 12, accent: 20, tertiary: 16 },
+  },
 ];
 
-const nouns = [
-  'Harvest',
-  'Blend',
-  'Symphony',
-  'Cascade',
-  'Serenade',
-  'Infusion',
-  'Palette',
-  'Melody',
-  'Glow',
-  'Canvas',
-  'Whisper',
-  'Dream',
-  'Aura',
-  'Mirage',
-  'Euphony',
-  'Embrace',
-  'Eden',
-  'Mosaic',
-  'Fable',
-  'Essence',
-  'Reverie',
-  'Opus',
-  'Rhapsody',
-  'Tapestry',
-  'Vignette',
-  'Grove',
-  'Solstice',
-  'Meadow',
-  'Oasis',
-  'Voyage',
-  'Horizon',
-  'Pulse',
-  'Quarry',
-  'Voyager',
-];
+const THEME_COUNT = curatedThemes.length;
 
 function mulberry32(a) {
   return function () {
@@ -199,19 +182,26 @@ function buildCssVars({ baseHue, accentHue, tertiaryHue, rand }) {
   };
 }
 
-function buildTheme(rand, index) {
-  const baseHue = Math.floor(rand() * 360);
-  const accentHue = (baseHue + 20 + rand() * 100) % 360;
-  const tertiaryHue = (baseHue + 180 + rand() * 60) % 360;
+function adjustHue(base, spread, rand) {
+  if (!spread) return ((base % 360) + 360) % 360;
+  const deviation = (rand() - 0.5) * spread;
+  return ((base + deviation) % 360 + 360) % 360;
+}
 
-  const cssVars = buildCssVars({ baseHue, accentHue, tertiaryHue, rand });
+function buildCuratedTheme(themeDef, seedString) {
+  const baseSeed = stringToSeed(`${seedString}-${themeDef.id}`);
+  const hueRand = mulberry32(baseSeed);
+  const styleRand = mulberry32(baseSeed ^ 0x9e3779b9);
 
-  const adjective = adjectives[Math.floor(rand() * adjectives.length)];
-  const noun = nouns[Math.floor(rand() * nouns.length)];
+  const baseHue = adjustHue(themeDef.hues.base, themeDef.variance.base, hueRand);
+  const accentHue = adjustHue(themeDef.hues.accent, themeDef.variance.accent, hueRand);
+  const tertiaryHue = adjustHue(themeDef.hues.tertiary, themeDef.variance.tertiary, hueRand);
+
+  const cssVars = buildCssVars({ baseHue, accentHue, tertiaryHue, rand: styleRand });
 
   return {
-    id: `theme-${index}`,
-    name: `${adjective} ${noun}`,
+    id: themeDef.id,
+    name: themeDef.name,
     cssVars,
     preview: {
       primary: cssVars['--theme-primary'],
@@ -222,8 +212,8 @@ function buildTheme(rand, index) {
 }
 
 export function generateThemes({ seedString = 'golden-harvest', count = THEME_COUNT } = {}) {
-  const rand = mulberry32(stringToSeed(seedString));
-  return Array.from({ length: count }, (_, index) => buildTheme(rand, index));
+  const limit = Math.min(Math.max(count, 1), THEME_COUNT);
+  return curatedThemes.slice(0, limit).map((theme) => buildCuratedTheme(theme, seedString));
 }
 
 export function getDefaultThemeIndex(themeCount, defaultFromEnv) {
