@@ -1,0 +1,10 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title>Illustration of VerdantPure almond oil bottle</title>
+  <desc>Placeholder of a premium almond oil bottle with almond icons.</desc>
+  <rect width="400" height="400" fill="#F8F5EC"/>
+  <rect x="165" y="60" width="70" height="280" rx="28" fill="#D9A441"/>
+  <rect x="173" y="88" width="54" height="210" rx="22" fill="#0E7A4B"/>
+  <ellipse cx="200" cy="150" rx="28" ry="22" fill="#F8F5EC"/>
+  <path d="M200 140c16 0 24 16 24 26-8-6-16-9-24-9s-16 3-24 9c0-10 8-26 24-26Z" fill="#D9A441"/>
+  <text x="200" y="330" font-family="Inter, Arial" font-size="24" text-anchor="middle" fill="#0E7A4B">Almond</text>
+</svg>

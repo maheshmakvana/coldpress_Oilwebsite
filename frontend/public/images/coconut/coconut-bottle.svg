@@ -1,0 +1,10 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title>Illustration of VerdantPure coconut oil bottle</title>
+  <desc>Minimal placeholder graphic of a translucent bottle with coconut imagery.</desc>
+  <rect width="400" height="400" fill="#F8F5EC"/>
+  <rect x="155" y="60" width="90" height="280" rx="36" fill="#D9A441" opacity="0.85"/>
+  <rect x="165" y="80" width="70" height="220" rx="24" fill="#0E7A4B" opacity="0.85"/>
+  <circle cx="200" cy="150" r="36" fill="#F8F5EC"/>
+  <path d="M200 140c20 0 30 18 30 30-10-8-20-12-30-12s-20 4-30 12c0-12 10-30 30-30Z" fill="#D9A441"/>
+  <text x="200" y="330" font-family="Inter, Arial" font-size="26" text-anchor="middle" fill="#0E7A4B">Coconut</text>
+</svg>

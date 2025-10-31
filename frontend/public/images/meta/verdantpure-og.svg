@@ -1,0 +1,11 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title>VerdantPure Oils Open Graph Artwork</title>
+  <desc>Shareable banner showcasing VerdantPure Oils tagline and brand colors.</desc>
+  <rect width="1200" height="630" fill="#0E7A4B"/>
+  <rect x="60" y="60" width="1080" height="510" rx="48" fill="#F8F5EC" opacity="0.92"/>
+  <text x="600" y="220" font-family="'Playfair Display', Georgia, serif" font-size="72" text-anchor="middle" fill="#0E7A4B">VerdantPure Oils</text>
+  <text x="600" y="300" font-family="Inter, Arial" font-size="32" text-anchor="middle" fill="#0E7A4B">Pure. Cold-Pressed. Nutrient-Rich.</text>
+  <text x="600" y="370" font-family="Inter, Arial" font-size="22" text-anchor="middle" fill="#0E7A4B" opacity="0.85">Lab verified, solvent-free oils sourced from regenerative farms across India.</text>
+  <rect x="420" y="420" width="360" height="80" rx="40" fill="#D9A441"/>
+  <text x="600" y="472" font-family="Inter, Arial" font-size="26" text-anchor="middle" fill="#0E7A4B">Shop VerdantPure.com</text>
+</svg>
