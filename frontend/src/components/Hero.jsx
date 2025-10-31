@@ -1,26 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Droplets, Sprout, Sun, ArrowRight, ChevronDown } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, Droplets, Sprout, Sun, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
 import { mockBrandInfo } from '../mock';
 
 export const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    setIsVisible(true);
-
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   const scrollToProducts = () => {
     const element = document.getElementById('products');
     if (element) {
@@ -29,184 +12,80 @@ export const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f5e6d3] via-[#faf5ef] to-[#e8dcc8] overflow-hidden">
-      {/* Animated peanuts and sesame seeds background */}
-      <div className="absolute inset-0 overflow-hidden opacity-20">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute peanut-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.5}s`,
-              animationDuration: `${15 + Math.random() * 10}s`
-            }}
-          >
-            <svg width="30" height="30" viewBox="0 0 40 40" fill="#8B6F47">
-              <ellipse cx="20" cy="15" rx="8" ry="12" transform="rotate(25 20 15)" />
-              <ellipse cx="20" cy="25" rx="8" ry="12" transform="rotate(-25 20 25)" />
-            </svg>
-          </div>
-        ))}
-        
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={`seed-${i}`}
-            className="absolute sesame-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.3}s`,
-              animationDuration: `${10 + Math.random() * 8}s`
-            }}
-          >
-            <div className="w-2 h-3 bg-[#D4A574] rounded-full opacity-60"></div>
-          </div>
-        ))}
-      </div>
-
-      {/* Floating oil drops */}
+    <section id="hero" className="relative overflow-hidden bg-[var(--theme-background)] pb-32 pt-36">
       <div className="absolute inset-0">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={`drop-${i}`}
-            className="absolute oil-drop"
-            style={{
-              left: `${20 + i * 10}%`,
-              animationDelay: `${i * 1.5}s`
-            }}
-          >
-            <Droplets className="w-6 h-6 text-[#DAA520] opacity-30" />
-          </div>
-        ))}
+        <div className="absolute -left-32 top-10 h-[420px] w-[420px] rounded-full blur-3xl opacity-60" style={{ background: 'var(--theme-gradient-soft)' }} />
+        <div className="absolute -right-24 bottom-0 h-[520px] w-[520px] rounded-full blur-3xl opacity-50" style={{ background: 'var(--theme-gradient-strong)' }} />
+        <div className="absolute inset-x-0 top-1/2 h-96 -translate-y-1/2 bg-[var(--theme-divider)] opacity-80" />
       </div>
 
-      {/* Organic shapes */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute top-20 left-10 w-96 h-96 bg-[#8B6F47] rounded-full blur-3xl opacity-10 animate-float"
-          style={{
-            transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-            transition: 'transform 0.3s ease-out'
-          }}
-        ></div>
-        <div 
-          className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-[#D4A574] rounded-full blur-3xl opacity-10 animate-float-delayed"
-          style={{
-            transform: `translate(${-mousePosition.x}px, ${-mousePosition.y}px)`,
-            transition: 'transform 0.3s ease-out'
-          }}
-        ></div>
-      </div>
+      <div className="relative z-10 mx-auto flex max-w-6xl flex-col gap-16 px-6 lg:flex-row lg:items-center">
+        <div className="flex-1 space-y-8">
+          <span className="inline-flex items-center gap-3 rounded-full border border-[var(--theme-border-soft)] bg-[var(--theme-surface)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-[var(--theme-text-muted)] shadow">
+            Cold-Pressed Heritage
+          </span>
+          <h1 className="text-4xl font-bold leading-tight text-[var(--theme-text-strong)] md:text-6xl">{mockBrandInfo.name}</h1>
+          <p className="max-w-xl text-lg text-[var(--theme-text)]">{mockBrandInfo.description}</p>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
-        <div className="pointer-events-none absolute -inset-x-24 -inset-y-16">
-          <div className="absolute left-1/2 top-1/2 w-[560px] h-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/20 opacity-60 animate-ripple"></div>
-          <div className="absolute left-1/2 top-1/2 w-[420px] h-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[#8B6F47]/25 via-transparent to-[#D4A574]/30 blur-3xl animate-shimmer" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute left-1/2 top-1/2 w-[320px] h-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#8B6F47]/30 animate-orbit"></div>
-        </div>
-        <div
-          className={`relative transform transition-all duration-1000 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}
-        >
-          <div className="inline-flex items-center space-x-2 bg-white/90 backdrop-blur-md px-8 py-4 rounded-full mb-8 shadow-xl border-2 border-[#8B6F47]/20 animate-slide-down hover:scale-105 transition-transform duration-300">
-            <Sprout className="w-6 h-6 text-[#8B6F47] animate-bounce-slow" />
-            <span className="text-[#8B6F47] font-semibold text-lg">100% Organic Cold-Pressed</span>
-          </div>
-
-          <h1 className="text-6xl md:text-8xl font-bold text-[#3d2817] mb-6 leading-tight drop-shadow-lg">
-            <span className="inline-block animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              {mockBrandInfo.name.split(' ')[0]}
-            </span>
-            <br />
-            <span className="inline-block animate-fade-in-up bg-gradient-to-r from-[#8B6F47] via-[#A0826D] to-[#D4A574] bg-clip-text text-transparent bg-size-200 animate-gradient" style={{ animationDelay: '0.4s' }}>
-              {mockBrandInfo.name.split(' ')[1]} {mockBrandInfo.name.split(' ')[2]}
-            </span>
-          </h1>
-          
-          <p className="text-3xl md:text-4xl text-[#8B6F47] mb-4 font-bold animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-            {mockBrandInfo.tagline}
-          </p>
-          <p className="text-lg text-[#6b5744] mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up font-medium" style={{ animationDelay: '0.8s' }}>
-            {mockBrandInfo.description}
-          </p>
-
-          <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up" style={{ animationDelay: '1s' }}>
-            <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-              <div className="w-64 h-64 rounded-full bg-gradient-to-br from-[#8B6F47]/20 to-[#D4A574]/20 blur-3xl animate-float-up"></div>
-              <div className="absolute w-40 h-40 rounded-full border border-[#8B6F47]/30 animate-ripple" style={{ animationDelay: '0.8s' }}></div>
-            </div>
+          <div className="flex flex-wrap items-center gap-4">
             <Button
-              onClick={scrollToProducts}
               size="lg"
-              className="group bg-gradient-to-r from-[#8B6F47] to-[#A0826D] hover:from-[#6d5636] hover:to-[#8B6F47] text-white px-12 py-7 text-lg transform hover:scale-110 transition-all duration-500 shadow-2xl hover:shadow-[#8B6F47]/50 relative overflow-hidden"
+              onClick={scrollToProducts}
+              className="group relative overflow-hidden bg-[var(--theme-primary)] px-8 py-6 text-white shadow-xl shadow-[var(--theme-card-shadow)] transition-transform duration-300 hover:scale-105 hover:bg-[var(--theme-primary-strong)]"
             >
-              <span className="relative z-10 flex items-center font-bold">
-                Explore Our Oils
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
+              <span className="relative z-10 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.4em]">
+                Explore Oils
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
-              <span className="pointer-events-none absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer"></span>
+              <span className="pointer-events-none absolute inset-0 bg-[var(--theme-gradient-soft)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </Button>
             <Button
-              onClick={() => document.getElementById('process').scrollIntoView({ behavior: 'smooth' })}
               size="lg"
               variant="outline"
-              className="group border-3 border-[#8B6F47] text-[#8B6F47] hover:bg-[#8B6F47] hover:text-white px-12 py-7 text-lg transform hover:scale-110 transition-all duration-500 hover:shadow-2xl font-bold relative overflow-hidden"
+              onClick={() => document.getElementById('process')?.scrollIntoView({ behavior: 'smooth' })}
+              className="border-[var(--theme-primary)] px-8 py-6 text-[var(--theme-primary)] transition-colors duration-300 hover:bg-[var(--theme-primary)] hover:text-white"
             >
-              <span className="relative z-10 flex items-center">
-                <Sun className="w-5 h-5 mr-2 group-hover:rotate-180 transition-transform duration-700" />
-                Our Process
-              </span>
-              <span className="pointer-events-none absolute inset-0 bg-[#8B6F47]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer"></span>
+              Our Method
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div
-              className={`group bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl transform transition-all duration-700 delay-200 hover:scale-110 hover:rotate-2 hover:shadow-2xl border-2 border-[#8B6F47]/20 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-            >
-              <div className="relative">
-                <Sprout className="w-14 h-14 text-[#8B6F47] mx-auto mb-4 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500" />
-                <div className="absolute inset-0 bg-[#8B6F47]/10 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              </div>
-              <h3 className="text-xl font-bold text-[#3d2817] mb-2 group-hover:text-[#8B6F47] transition-colors duration-300">100% Organic</h3>
-              <p className="text-[#6b5744]">Naturally grown peanuts and sesame seeds</p>
+          <div className="grid grid-cols-1 gap-4 pt-6 sm:grid-cols-3">
+            <div className="rounded-3xl border border-[var(--theme-border-soft)] bg-[var(--theme-surface)] p-6 shadow-lg shadow-[var(--theme-card-shadow)]">
+              <Sprout className="mb-4 h-6 w-6 text-[var(--theme-primary)]" />
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--theme-text-muted)]">Organic Seeds</p>
+              <p className="mt-2 text-xl font-semibold text-[var(--theme-text-strong)]">100% Traceable</p>
             </div>
-
-            <div
-              className={`group bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl transform transition-all duration-700 delay-400 hover:scale-110 hover:-rotate-2 hover:shadow-2xl border-2 border-[#8B6F47]/20 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-            >
-              <div className="relative">
-                <Sun className="w-14 h-14 text-[#D4A574] mx-auto mb-4 group-hover:scale-125 group-hover:rotate-180 transition-all duration-700" />
-                <div className="absolute inset-0 bg-[#D4A574]/10 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              </div>
-              <h3 className="text-xl font-bold text-[#3d2817] mb-2 group-hover:text-[#D4A574] transition-colors duration-300">Cold-Pressed</h3>
-              <p className="text-[#6b5744]">Traditional stone-mill extraction method</p>
+            <div className="rounded-3xl border border-[var(--theme-border-soft)] bg-[var(--theme-surface)] p-6 shadow-lg shadow-[var(--theme-card-shadow)]">
+              <Sun className="mb-4 h-6 w-6 text-[var(--theme-secondary)]" />
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--theme-text-muted)]">Press Temperature</p>
+              <p className="mt-2 text-xl font-semibold text-[var(--theme-text-strong)]">Under 45°C</p>
             </div>
-
-            <div
-              className={`group bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl transform transition-all duration-700 delay-600 hover:scale-110 hover:rotate-2 hover:shadow-2xl border-2 border-[#8B6F47]/20 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-            >
-              <div className="relative">
-                <Droplets className="w-14 h-14 text-[#DAA520] mx-auto mb-4 group-hover:scale-125 group-hover:animate-bounce transition-all duration-500" />
-                <div className="absolute inset-0 bg-[#DAA520]/10 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              </div>
-              <h3 className="text-xl font-bold text-[#3d2817] mb-2 group-hover:text-[#DAA520] transition-colors duration-300">Pure & Fresh</h3>
-              <p className="text-[#6b5744]">No chemicals or preservatives added</p>
+            <div className="rounded-3xl border border-[var(--theme-border-soft)] bg-[var(--theme-surface)] p-6 shadow-lg shadow-[var(--theme-card-shadow)]">
+              <Droplets className="mb-4 h-6 w-6 text-[var(--theme-highlight)]" />
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--theme-text-muted)]">Nutrient Density</p>
+              <p className="mt-2 text-xl font-semibold text-[var(--theme-text-strong)]">Full Spectrum</p>
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow cursor-pointer" onClick={scrollToProducts}>
-          <ChevronDown className="w-8 h-8 text-[#8B6F47]" />
+        <div className="relative flex flex-1 flex-col gap-6">
+          <div className="absolute -left-6 top-10 hidden h-24 w-24 items-center justify-center rounded-full bg-[var(--theme-primary-soft)] text-[var(--theme-primary)] shadow-lg shadow-[var(--theme-card-shadow)] sm:flex">
+            <Sparkles className="h-8 w-8" />
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {mockBrandInfo.heroImages.map((image, index) => (
+              <div
+                key={image}
+                className={`relative overflow-hidden rounded-[2.5rem] border border-[var(--theme-border-soft)] bg-[var(--theme-surface)] shadow-2xl shadow-[var(--theme-card-shadow)] ${index === 0 ? 'sm:row-span-2' : ''}`}
+              >
+                <img src={image} alt={`Harvest ${index + 1}`} className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 flex items-center gap-2 rounded-full bg-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur">
+                  {index === 0 ? 'Stone Mill Press' : 'Sunlit Bottling'}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

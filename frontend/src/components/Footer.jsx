@@ -2,6 +2,13 @@ import React from 'react';
 import { Facebook, Twitter, Instagram, Mail } from 'lucide-react';
 import { mockBrandInfo } from '../mock';
 
+const socials = [
+  { icon: Facebook, label: 'Facebook' },
+  { icon: Twitter, label: 'Twitter' },
+  { icon: Instagram, label: 'Instagram' },
+  { icon: Mail, label: 'Newsletter' },
+];
+
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -13,99 +20,77 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#1e1919] text-white py-16">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-[#61525a] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">G</span>
+    <footer className="relative bg-[var(--theme-surface-strong)] pt-16 pb-10 text-[var(--theme-text)]">
+      <div className="absolute inset-x-0 top-0 h-24 bg-[var(--theme-divider)]" />
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="grid gap-12 md:grid-cols-[minmax(0,1.2fr),repeat(2,minmax(0,1fr))]">
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--theme-primary)] text-lg font-bold text-white shadow-lg shadow-[var(--theme-card-shadow)]">
+                GH
+              </span>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--theme-text-muted)]">Golden Harvest</p>
+                <p className="text-lg font-semibold text-[var(--theme-text-strong)]">{mockBrandInfo.name}</p>
               </div>
-              <span className="text-xl font-bold">{mockBrandInfo.name}</span>
             </div>
-            <p className="text-[#bbb5ae] leading-relaxed mb-6 max-w-md">
+            <p className="max-w-md text-[var(--theme-text)]">
               {mockBrandInfo.description}
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="w-10 h-10 bg-[#61525a] rounded-full flex items-center justify-center hover:bg-[#4a3f45] transition-all duration-300 transform hover:scale-110"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-[#61525a] rounded-full flex items-center justify-center hover:bg-[#4a3f45] transition-all duration-300 transform hover:scale-110"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-[#61525a] rounded-full flex items-center justify-center hover:bg-[#4a3f45] transition-all duration-300 transform hover:scale-110"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-[#61525a] rounded-full flex items-center justify-center hover:bg-[#4a3f45] transition-all duration-300 transform hover:scale-110"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
+            <div className="flex gap-3">
+              {socials.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href="#"
+                    className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--theme-border-soft)] bg-[var(--theme-background)] text-[var(--theme-primary)] transition-transform duration-300 hover:-translate-y-1 hover:bg-[var(--theme-primary)] hover:text-white"
+                    aria-label={social.label}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          <div>
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-3">
-              <li>
-                <button
-                  onClick={() => scrollToSection('products')}
-                  className="text-[#bbb5ae] hover:text-white transition-colors duration-300"
-                >
-                  Products
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('about')}
-                  className="text-[#bbb5ae] hover:text-white transition-colors duration-300"
-                >
-                  About Us
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="text-[#bbb5ae] hover:text-white transition-colors duration-300"
-                >
-                  Contact
-                </button>
-              </li>
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--theme-text-muted)]">Quick Links</h3>
+            <ul className="space-y-3 text-[var(--theme-text)]">
+              {[
+                { label: 'Products', id: 'products' },
+                { label: 'Our Process', id: 'process' },
+                { label: 'Gallery', id: 'gallery' },
+                { label: 'Contact', id: 'contact' },
+              ].map((link) => (
+                <li key={link.id}>
+                  <button
+                    onClick={() => scrollToSection(link.id)}
+                    className="text-left transition-colors duration-300 hover:text-[var(--theme-primary)]"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-lg font-bold mb-4">Contact Info</h3>
-            <ul className="space-y-3 text-[#bbb5ae]">
-              <li className="hover:text-white transition-colors duration-300">{mockBrandInfo.email}</li>
-              <li className="hover:text-white transition-colors duration-300">{mockBrandInfo.phone}</li>
-              <li className="hover:text-white transition-colors duration-300">123 Harvest Lane<br />Oakland, CA 94612</li>
-            </ul>
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--theme-text-muted)]">Visit</h3>
+            <div className="space-y-3 text-[var(--theme-text)]">
+              <p>{mockBrandInfo.email}</p>
+              <p>{mockBrandInfo.phone}</p>
+              <p>123 Harvest Lane<br />Oakland, CA 94612</p>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-[#736c64] pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-[#bbb5ae] text-sm">
-              © {currentYear} {mockBrandInfo.name}. All rights reserved.
-            </p>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-[#bbb5ae] hover:text-white transition-colors duration-300">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-[#bbb5ae] hover:text-white transition-colors duration-300">
-                Terms of Service
-              </a>
+        <div className="mt-12 border-t border-[var(--theme-border-soft)] pt-6">
+          <div className="flex flex-col gap-4 text-sm text-[var(--theme-text-muted)] md:flex-row md:items-center md:justify-between">
+            <p>© {currentYear} {mockBrandInfo.name}. All rights reserved.</p>
+            <div className="flex gap-6">
+              <a href="#" className="transition-colors duration-300 hover:text-[var(--theme-primary)]">Privacy Policy</a>
+              <a href="#" className="transition-colors duration-300 hover:text-[var(--theme-primary)]">Terms</a>
             </div>
           </div>
         </div>

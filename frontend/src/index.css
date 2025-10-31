@@ -7,78 +7,94 @@
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --background: 40 44% 97%;
+    --foreground: 30 22% 18%;
+    --card: 36 40% 98%;
+    --card-foreground: 30 22% 20%;
+    --popover: 36 40% 98%;
+    --popover-foreground: 30 22% 20%;
+    --primary: 36 28% 40%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
+    --secondary: 35 30% 92%;
+    --secondary-foreground: 30 20% 22%;
+    --muted: 32 26% 92%;
+    --muted-foreground: 30 18% 46%;
+    --accent: 30 28% 94%;
+    --accent-foreground: 30 22% 24%;
+    --destructive: 10 70% 52%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --border: 32 24% 82%;
+    --input: 32 24% 82%;
+    --ring: 36 28% 40%;
+    --chart-1: 36 28% 40%;
+    --chart-2: 30 58% 55%;
+    --chart-3: 47 70% 55%;
+    --chart-4: 18 36% 42%;
+    --chart-5: 48 72% 60%;
+    --radius: 0.75rem;
 
-    --accent-ui-accent: #61525a;
-    --text-light: #1e1919;
-    --text-dark: white;
-    --text-subtle-light: #736c64;
-    --text-subtle-dark: #bbb5ae;
-    --surface-background-dark: #1e1919;
-    --color-accent-coconut: #f7f5f2;
+    --theme-background: #faf5ef;
+    --theme-surface: #ffffff;
+    --theme-surface-alt: #f3e7d7;
+    --theme-surface-strong: #efe0cc;
+    --theme-primary: #8b6f47;
+    --theme-primary-strong: #4a3f45;
+    --theme-primary-soft: rgba(139, 111, 71, 0.12);
+    --theme-secondary: #d4a574;
+    --theme-secondary-strong: #b17f48;
+    --theme-tertiary: #61525a;
+    --theme-tertiary-strong: #4a3f45;
+    --theme-highlight: #daa520;
+    --theme-highlight-soft: rgba(218, 165, 32, 0.28);
+    --theme-text-strong: #3d2817;
+    --theme-text: #6b5744;
+    --theme-text-muted: #736c64;
+    --theme-border-soft: rgba(97, 82, 90, 0.25);
+    --theme-border-strong: rgba(97, 82, 90, 0.45);
+    --theme-card-shadow: rgba(68, 52, 40, 0.18);
+    --theme-glow-from: rgba(139, 111, 71, 0.18);
+    --theme-glow-to: rgba(212, 165, 116, 0.16);
+    --theme-gradient-soft: linear-gradient(135deg, rgba(139, 111, 71, 0.18) 0%, rgba(212, 165, 116, 0.12) 100%);
+    --theme-gradient-strong: linear-gradient(135deg, rgba(139, 111, 71, 0.9) 0%, rgba(212, 165, 116, 0.75) 100%);
+    --theme-glass: rgba(255, 255, 255, 0.7);
+    --theme-glass-strong: rgba(255, 255, 255, 0.85);
+    --theme-divider: linear-gradient(120deg, rgba(139, 111, 71, 0.18), rgba(212, 165, 116, 0.1));
+    --theme-ripple: linear-gradient(120deg, rgba(139, 111, 71, 0.18), rgba(212, 165, 116, 0.18));
   }
+
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --background: 24 32% 8%;
+    --foreground: 36 45% 96%;
+    --card: 24 32% 8%;
+    --card-foreground: 36 45% 96%;
+    --popover: 24 32% 8%;
+    --popover-foreground: 36 45% 96%;
+    --primary: 36 40% 70%;
+    --primary-foreground: 26 26% 12%;
+    --secondary: 30 28% 20%;
+    --secondary-foreground: 35 40% 92%;
+    --muted: 30 18% 18%;
+    --muted-foreground: 36 25% 70%;
+    --accent: 30 18% 22%;
+    --accent-foreground: 36 25% 88%;
+    --destructive: 10 70% 55%;
+    --destructive-foreground: 26 26% 12%;
+    --border: 30 18% 26%;
+    --input: 30 18% 26%;
+    --ring: 36 40% 70%;
   }
 }
 
@@ -107,27 +123,26 @@ code {
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f7f5f2;
+  background: var(--theme-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #61525a;
+  background: var(--theme-primary);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4a3f45;
+  background: var(--theme-primary-strong);
 }
 
-/* Advanced animations */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
   50% {
@@ -135,7 +150,6 @@ code {
   }
 }
 
-/* Peanut and sesame floating animation */
 @keyframes peanut-float {
   0% {
     transform: translate(0, 0) rotate(0deg);
@@ -184,20 +198,9 @@ code {
   }
 }
 
-.peanut-float {
-  animation: peanut-float 15s ease-in-out infinite;
-}
-
-.sesame-float {
-  animation: sesame-float 10s ease-in-out infinite;
-}
-
-.oil-drop {
-  animation: oil-drop 8s ease-in-out infinite;
-}
-
 @keyframes float-delayed {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
   50% {
@@ -259,7 +262,8 @@ code {
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(1);
   }
@@ -270,7 +274,8 @@ code {
 }
 
 @keyframes pulse-slower {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.2;
     transform: scale(1);
   }
@@ -281,7 +286,8 @@ code {
 }
 
 @keyframes bounce-slow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -290,7 +296,8 @@ code {
 }
 
 @keyframes bounce-slower {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -399,36 +406,37 @@ code {
 }
 
 .animate-pulse-slow {
-  animation: pulse-slow 4s ease-in-out infinite;
+  animation: pulse-slow 6s ease-in-out infinite;
 }
 
 .animate-pulse-slower {
-  animation: pulse-slower 6s ease-in-out infinite;
+  animation: pulse-slower 8s ease-in-out infinite;
 }
 
 .animate-bounce-slow {
-  animation: bounce-slow 2s ease-in-out infinite;
+  animation: bounce-slow 3s ease-in-out infinite;
 }
 
 .animate-bounce-slower {
-  animation: bounce-slower 3s ease-in-out infinite;
+  animation: bounce-slower 4s ease-in-out infinite;
 }
 
 .animate-spin-slow {
-  animation: spin-slow 3s linear infinite;
+  animation: spin-slow 12s linear infinite;
 }
 
 .animate-gradient {
-  animation: gradient 3s ease infinite;
+  animation: gradient 8s ease infinite;
+  background-size: 200% 200%;
 }
 
 .animate-shimmer {
-  animation: shimmer 2.5s linear infinite;
+  animation: shimmer 2.8s ease-in-out infinite;
   background-size: 200% 200%;
 }
 
 .animate-ripple {
-  animation: ripple 6s ease-out infinite;
+  animation: ripple 4s ease-in-out infinite;
 }
 
 .animate-orbit {
@@ -436,15 +444,5 @@ code {
 }
 
 .animate-float-up {
-  animation: float-up 7s ease-in-out infinite;
-}
-
-.bg-size-200 {
-  background-size: 200% 200%;
-}
-
-@layer utilities {
-  .transition-smooth {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+  animation: float-up 8s ease-in-out infinite;
 }

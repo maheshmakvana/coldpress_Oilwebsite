@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ShoppingCart, Droplet, Sprout, Sparkles, Info } from 'lucide-react';
+import React, { useState } from 'react';
+import { ShoppingCart, Droplets, Sprout } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
@@ -9,186 +9,85 @@ import { useToast } from '../hooks/use-toast';
 export const Products = () => {
   const { toast } = useToast();
   const [hoveredProduct, setHoveredProduct] = useState(null);
-  const [visibleCards, setVisibleCards] = useState([]);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              setVisibleCards(mockProducts.map(p => p.id));
-            }, 200);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   const handleInquiry = (productName) => {
     toast({
-      title: "Inquiry Sent!",
-      description: `We'll contact you about ${productName} soon.`,
+      title: 'Inquiry Sent!',
+      description: `We will contact you about ${productName} shortly.`,
     });
   };
 
   return (
-    <section id="products" ref={sectionRef} className="py-24 bg-white relative overflow-hidden">
-      {/* Animated background with peanuts */}
-      <div className="absolute inset-0 opacity-5">
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute peanut-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.5}s`
-            }}
-          >
-            <svg width="30" height="30" viewBox="0 0 40 40" fill="#8B6F47">
-              <ellipse cx="20" cy="15" rx="8" ry="12" transform="rotate(25 20 15)" />
-              <ellipse cx="20" cy="25" rx="8" ry="12" transform="rotate(-25 20 25)" />
-            </svg>
-          </div>
-        ))}
-      </div>
+    <section id="products" className="relative bg-[var(--theme-surface-alt)] py-24">
+      <div className="absolute inset-x-0 -top-20 h-32 bg-[var(--theme-divider)]" />
+      <div className="absolute inset-0 opacity-[0.06]" style={{ background: 'var(--theme-ripple)' }} />
 
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-32 left-10 w-64 h-64 bg-gradient-to-br from-[#8B6F47]/25 via-transparent to-transparent blur-3xl animate-float-up"></div>
-        <div className="absolute -bottom-36 right-0 w-72 h-72 bg-gradient-to-br from-[#D4A574]/25 via-transparent to-transparent blur-3xl animate-float-up" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute top-1/3 right-1/4 w-48 h-48 border border-[#8B6F47]/20 rounded-full animate-orbit" style={{ animationDuration: '18s' }}></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <Badge className="bg-gradient-to-r from-[#8B6F47] to-[#D4A574] text-white mb-4 px-8 py-3 text-sm font-semibold animate-fade-in hover:scale-110 transition-transform duration-300 shadow-lg">
-            Our Premium Collection
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="flex flex-col gap-6 text-center">
+          <Badge className="mx-auto bg-[var(--theme-primary)] px-6 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white">
+            Signature Bottlings
           </Badge>
-          <h2 className="text-5xl md:text-6xl font-bold text-[#3d2817] mb-4 animate-fade-in-up">
-            Pure Cold-Pressed Oils
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-[var(--theme-text-strong)]">
+            Golden Oils for Everyday Rituals
           </h2>
-          <p className="text-lg text-[#6b5744] max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Experience the authentic taste and nutrition of traditionally extracted peanut and sesame oils
+          <p className="mx-auto max-w-2xl text-lg text-[var(--theme-text)]">
+            Crafted in small batches, sealed in glass, and ready for both kitchen adventures and wellness rituals.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {mockProducts.map((product, index) => {
-            const isVisible = visibleCards.includes(product.id);
-            return (
-              <Card
-                key={product.id}
-                className={`group relative overflow-hidden border-3 border-[#8B6F47]/30 hover:border-[#8B6F47] transition-all duration-700 transform hover:-translate-y-4 hover:shadow-2xl hover:shadow-[#8B6F47]/30 bg-gradient-to-br from-white to-[#faf5ef] ${
-                  isVisible ? 'animate-scale-in' : 'opacity-0 scale-90'
-                }`}
-                onMouseEnter={() => setHoveredProduct(product.id)}
-                onMouseLeave={() => setHoveredProduct(null)}
-                style={{
-                  animationDelay: `${index * 0.2}s`
-                }}
-              >
-                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-[-40%] bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-12 animate-shimmer" style={{ animationDuration: '3.5s' }}></div>
+        <div className="mt-16 grid gap-10 md:grid-cols-3">
+          {mockProducts.map((product) => (
+            <Card
+              key={product.id}
+              onMouseEnter={() => setHoveredProduct(product.id)}
+              onMouseLeave={() => setHoveredProduct(null)}
+              className="group relative overflow-hidden rounded-[2.25rem] border border-[var(--theme-border-soft)] bg-[var(--theme-background)] shadow-xl shadow-[var(--theme-card-shadow)] transition-all duration-500 hover:-translate-y-2 hover:border-[var(--theme-primary)]"
+            >
+              <div className="relative h-72 overflow-hidden rounded-[2rem]">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className={`h-full w-full object-cover transition-transform duration-700 ${hoveredProduct === product.id ? 'scale-110' : 'scale-100'}`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur">
+                  {product.category}
                 </div>
-                {/* Floating peanuts on hover */}
-                {hoveredProduct === product.id && (
-                  <>
-                    <div className="absolute top-10 right-10 opacity-70 animate-float z-20">
-                      <svg width="20" height="20" viewBox="0 0 40 40" fill="#8B6F47">
-                        <ellipse cx="20" cy="15" rx="8" ry="12" transform="rotate(25 20 15)" />
-                        <ellipse cx="20" cy="25" rx="8" ry="12" transform="rotate(-25 20 25)" />
-                      </svg>
-                    </div>
-                    <div className="absolute top-20 left-10 opacity-70 animate-float-delayed z-20">
-                      <svg width="15" height="15" viewBox="0 0 40 40" fill="#D4A574">
-                        <ellipse cx="20" cy="15" rx="8" ry="12" transform="rotate(25 20 15)" />
-                        <ellipse cx="20" cy="25" rx="8" ry="12" transform="rotate(-25 20 25)" />
-                      </svg>
-                    </div>
-                  </>
-                )}
-
-                <div className="absolute top-4 right-4 z-10">
-                  <Badge className="bg-gradient-to-r from-[#8B6F47] to-[#A0826D] text-white shadow-lg group-hover:scale-110 transition-transform duration-300 font-semibold">
-                    {product.category}
-                  </Badge>
+                <div className="absolute bottom-6 right-6 rounded-full bg-[var(--theme-glass-strong)] px-5 py-2 text-lg font-semibold text-[var(--theme-primary)] shadow-lg shadow-[var(--theme-card-shadow)] backdrop-blur">
+                  ${product.price}
                 </div>
+              </div>
 
-                <div className="absolute top-4 left-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <Sparkles className="w-6 h-6 text-[#DAA520] animate-spin-slow" />
+              <CardHeader className="space-y-2 pt-6">
+                <CardTitle className="text-2xl font-semibold text-[var(--theme-text-strong)]">
+                  {product.name}
+                </CardTitle>
+                <CardDescription className="flex items-center gap-2 text-[var(--theme-text)]">
+                  <Droplets className="h-4 w-4 text-[var(--theme-highlight)]" />
+                  {product.volume}
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent className="space-y-4 text-[var(--theme-text)]">
+                <p>{product.description}</p>
+                <div className="inline-flex items-center gap-2 rounded-full bg-[var(--theme-primary-soft)] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[var(--theme-primary)]">
+                  <Sprout className="h-4 w-4" /> {product.source}
                 </div>
+              </CardContent>
 
-                <div className="relative h-80 overflow-hidden bg-gradient-to-br from-[#faf5ef] to-[#f5e6d3]">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className={`w-full h-full object-cover transition-all duration-700 ${
-                      hoveredProduct === product.id ? 'scale-125 rotate-3' : 'scale-100 rotate-0'
-                    }`}
-                  />
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-t from-[#8B6F47]/70 via-transparent to-transparent transition-opacity duration-500 ${
-                      hoveredProduct === product.id ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  />
-                  
-                  <div
-                    className={`absolute bottom-4 right-4 bg-white/95 backdrop-blur-md px-6 py-3 rounded-full shadow-xl transform transition-all duration-500 animate-float-up ${
-                      hoveredProduct === product.id ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                    }`}
-                  >
-                    <span className="text-2xl font-bold text-[#8B6F47]">${product.price}</span>
-                  </div>
-                </div>
-
-                <CardHeader className="relative">
-                  <CardTitle className="text-2xl text-[#3d2817] group-hover:text-[#8B6F47] transition-colors duration-500 font-bold">
-                    {product.name}
-                  </CardTitle>
-                  <CardDescription className="text-[#6b5744] flex items-center gap-2 font-medium">
-                    <Droplet className="w-4 h-4 group-hover:animate-bounce text-[#DAA520]" />
-                    {product.volume}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="relative">
-                  <p className="text-[#6b5744] leading-relaxed mb-4">{product.description}</p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 bg-[#f5e6d3] px-3 py-2 rounded-full">
-                      <Sprout className="w-5 h-5 text-[#8B6F47] group-hover:rotate-12 transition-transform duration-300" />
-                      <span className="text-sm text-[#6b5744] font-semibold">{product.source}</span>
-                    </div>
-                  </div>
-                </CardContent>
-
-                <CardFooter className="relative">
-                  <Button
-                    onClick={() => handleInquiry(product.name)}
-                    className="w-full bg-gradient-to-r from-[#8B6F47] to-[#A0826D] hover:from-[#6d5636] hover:to-[#8B6F47] text-white transition-all duration-500 transform hover:scale-105 hover:shadow-lg group relative overflow-hidden font-bold"
-                  >
-                    <span className="relative z-10 flex items-center justify-center">
-                      <ShoppingCart className="w-4 h-4 mr-2 group-hover:animate-bounce" />
-                      Order Now
-                    </span>
-                    <span className="pointer-events-none absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer"></span>
-                  </Button>
-                </CardFooter>
-
-                <div className="absolute bottom-0 right-0 w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute bottom-0 right-0 w-full h-full bg-[#8B6F47]/10 rounded-tl-full"></div>
-                </div>
-              </Card>
-            );
-          })}
+              <CardFooter>
+                <Button
+                  onClick={() => handleInquiry(product.name)}
+                  className="group relative w-full overflow-hidden bg-[var(--theme-primary)] py-4 text-white shadow-lg shadow-[var(--theme-card-shadow)] transition-transform duration-300 hover:scale-[1.02] hover:bg-[var(--theme-primary-strong)]"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-[0.4em]">
+                    <ShoppingCart className="h-4 w-4" /> Inquire
+                  </span>
+                  <span className="pointer-events-none absolute inset-0 bg-[var(--theme-gradient-soft)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
