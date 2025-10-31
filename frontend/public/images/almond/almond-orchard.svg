@@ -1,0 +1,9 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title>Illustration of almond orchards in Kashmir</title>
+  <desc>Placeholder landscape of snow-kissed mountains and almond orchards.</desc>
+  <rect width="400" height="400" fill="#E3F2FD"/>
+  <polygon points="0,240 140,160 220,230 320,150 400,220 400,400 0,400" fill="#0E7A4B" opacity="0.85"/>
+  <polygon points="40,180 120,130 220,200 320,120 380,170" fill="#D9A441" opacity="0.8"/>
+  <circle cx="320" cy="80" r="40" fill="#FFE082" opacity="0.7"/>
+  <text x="24" y="360" font-family="Inter, Arial" font-size="20" fill="#0E7A4B">Kashmir Orchard</text>
+</svg>

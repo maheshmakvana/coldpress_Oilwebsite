@@ -1,0 +1,17 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title>Illustration of coconut groves in Pollachi</title>
+  <desc>Placeholder showing palm trees and a coastal backdrop.</desc>
+  <rect width="400" height="400" fill="#E0F2F1"/>
+  <rect y="220" width="400" height="180" fill="#0E7A4B" opacity="0.85"/>
+  <path d="M40 240c30-60 80-60 110 0" stroke="#D9A441" stroke-width="6" fill="none"/>
+  <path d="M250 240c25-70 70-70 90 0" stroke="#D9A441" stroke-width="6" fill="none"/>
+  <g fill="#0E7A4B">
+    <rect x="80" y="160" width="12" height="120" rx="6"/>
+    <rect x="280" y="150" width="12" height="130" rx="6"/>
+  </g>
+  <g fill="#D9A441">
+    <circle cx="86" cy="150" r="32"/>
+    <circle cx="286" cy="138" r="32"/>
+  </g>
+  <text x="30" y="360" font-family="Inter, Arial" font-size="20" fill="#0E7A4B">Pollachi Groves</text>
+</svg>

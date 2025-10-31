@@ -1,0 +1,9 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title>Illustration of mustard fields in Rajasthan</title>
+  <desc>Placeholder landscape showing rolling mustard fields with a sunrise.</desc>
+  <rect width="400" height="400" fill="#F1F5F9"/>
+  <circle cx="320" cy="100" r="60" fill="#D9A441" opacity="0.7"/>
+  <path d="M0 280 Q120 200 200 260 T400 240 V400 H0 Z" fill="#0E7A4B" opacity="0.85"/>
+  <path d="M0 320 Q120 260 200 310 T400 300 V400 H0 Z" fill="#D9A441" opacity="0.9"/>
+  <text x="24" y="360" font-family="Inter, Arial" font-size="20" fill="#0E7A4B">Bharatpur Estates</text>
+</svg>
